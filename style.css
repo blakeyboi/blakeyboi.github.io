@@ -1,0 +1,79 @@
+h1 {
+    color: blueviolet;
+    background-image: url(https://vignette.wikia.nocookie.net/pixar/images/6/63/Disney-cars-mcqueen.jpg/revision/latest?cb=20110727053733);
+    margin: 75px;
+    text-align: center;
+    font-size: 100px;
+}
+
+body{
+    background-color: aquamarine;
+}
+p{
+    color: rgb(80, 112, 255);
+    text-align: center;
+    font-size: 30px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: crimson;
+
+
+}
+
+nav ul li {
+    float: left;
+    
+}
+
+nav ul li a{
+    display: block;
+    padding: 10px;
+    background-color: crimson;
+    text-decoration: none;
+    color: blue;
+
+}
+
+nav ul li a:hover{
+    background-color: blue;
+    color: crimson;
+}
+
+.torino {
+    float: right
+}
+
+.pics_in_a_row {
+    display: flex;
+  }
+  
+.img1 { flex: 1.3344; }
+.img2 { flex: 1.3345; }
+
+.bugatti {
+    text-align: center;
+    color: blue;
+    background-color: goldenrod;
+
+}
+
+.hennessey {
+    text-align: center;
+    color: goldenrod;
+    background-color: blue;
+}
+
+#the_id {
+    background-color: black;
+    color: white;
+    font-style: oblique;
+}
+
