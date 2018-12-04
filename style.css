@@ -7,7 +7,7 @@ h1 {
 }
 
 body{
-    background-color: aquamarine;
+    background-color: grey
 }
 p{
     color: rgb(80, 112, 255);
@@ -23,7 +23,7 @@ nav ul {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: crimson;
+    background-color: blue;
 
 
 }
@@ -36,15 +36,15 @@ nav ul li {
 nav ul li a{
     display: block;
     padding: 10px;
-    background-color: crimson;
+    background-color: blue;
     text-decoration: none;
-    color: blue;
+    color: black;
 
 }
 
 nav ul li a:hover{
-    background-color: blue;
-    color: crimson;
+    background-color: black;
+    color: blue;
 }
 
 .torino {
