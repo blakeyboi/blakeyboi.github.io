@@ -38,12 +38,12 @@ nav ul li a{
     padding: 10px;
     background-color: blue;
     text-decoration: none;
-    color: black;
+    color: white;
 
 }
 
 nav ul li a:hover{
-    background-color: black;
+    background-color: white;
     color: blue;
 }
 
