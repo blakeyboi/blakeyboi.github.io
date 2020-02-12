@@ -6,10 +6,11 @@
 // - describe what you did to take this project "above and beyond"
 
 
-let star;
+let shoe;
+let scalar = 1.0;
 
 function preload() {
-  star = loadImage("assets/gear.png")
+  shoe = loadImage("assets/gear.jpg")
 }
 
 
@@ -22,5 +23,7 @@ function draw() {
   background(220);
   fill("lime")
   // circle(mouseX - 10, mouseY - 10, 100)
-  image(star, mouseX - 50, mouseY - 50, 100, 100)
+  image(shoe, mouseX - 50, mouseY - 50, scalar*shoe.width, scalar*shoe.height)
 }
+
+
