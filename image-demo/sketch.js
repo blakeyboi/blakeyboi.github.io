@@ -6,11 +6,11 @@
 // - describe what you did to take this project "above and beyond"
 
 
-let shoe;
+let star;
 let scalar = 1.0;
 
 function preload() {
-  shoe = loadImage("assets/gear.jpg")
+  star = loadImage("assets/gear.png")
 }
 
 
@@ -23,7 +23,16 @@ function draw() {
   background(220);
   fill("lime")
   // circle(mouseX - 10, mouseY - 10, 100)
-  image(shoe, mouseX - 50, mouseY - 50, scalar*shoe.width, scalar*shoe.height)
+  image(star, mouseX - (width/2), mouseY - (height/2), scalar*star.width, scalar*star.height)
 }
 
+function mouseWheel(event) {
+  print(event.delta);
+  if (event.delta < 0) {
+    scalar *= 1.1;
+  }
+  else {
+    scalar *= 0.9;
+  }
+}
 
