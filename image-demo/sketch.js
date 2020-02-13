@@ -10,7 +10,7 @@ let star;
 let scalar = 1.0;
 
 function preload() {
-  star = loadImage("assets/gear.png")
+  star = loadImage("assets/gear.png");
 }
 
 
