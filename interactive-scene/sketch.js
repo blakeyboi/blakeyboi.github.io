@@ -1,4 +1,4 @@
-// Platformer
+// platformer
 // Blake Tierney
 // 2/25/2020
 //
@@ -9,11 +9,8 @@
 let mario;
 let marioX;
 let marioY;
-let marioDX = 5;
 let marioDY = 5;
 let movingUp = false;
-let movingLeft = false;
-let movingRight = false;
 
 function preload() {
   mario = loadImage("assets/mario.png");
@@ -23,8 +20,8 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  marioX = width/2;
-  marioY = height/2;
+  marioX = width;
+  marioY = height;
 }
 // draw function
 function draw() {
@@ -34,38 +31,20 @@ function draw() {
 }
 // moving with keys
 function keyPressed() {
-  if (key === "w") {
+  if (key === " ") {
     movingUp = true;
-  }
-  if (key === "a") {
-    movingLeft = true;
-  }
-  if (key === "d") {
-    movingRight = true;
   }
 }
 
 function keyReleased() {
-  if (key === "w") {
+  if (key === " ") {
     movingUp = false;
-  }
-  if (key === "a") {
-    movingLeft = false;
-  }
-  if (key === "d") {
-    movingRight = false;
   }
 }
 
 function moveMario() {
   if (movingUp) {
     marioY -= marioDY;
-  }
-  if (movingLeft) {
-    marioX -= marioDX;
-  }
-  if (movingRight) {
-    marioX += marioDX;
   }
 }
 
