@@ -12,7 +12,6 @@ let marioY;
 let marioDX = 5;
 let marioDY = 5;
 let movingUp = false;
-let movingDown = false;
 let movingLeft = false;
 let movingRight = false;
 
@@ -41,9 +40,6 @@ function keyPressed() {
   if (key === "a") {
     movingLeft = true;
   }
-  if (key === "s") {
-    movingDown = true;
-  }
   if (key === "d") {
     movingRight = true;
   }
@@ -56,9 +52,6 @@ function keyReleased() {
   if (key === "a") {
     movingLeft = false;
   }
-  if (key === "s") {
-    movingDown = false;
-  }
   if (key === "d") {
     movingRight = false;
   }
@@ -70,9 +63,6 @@ function moveMario() {
   }
   if (movingLeft) {
     marioX -= marioDX;
-  }
-  if (movingDown) {
-    marioY += marioDY;
   }
   if (movingRight) {
     marioX += marioDX;
