@@ -15,10 +15,12 @@ let wallX, wallY;
 let wallW = 100;
 let wallH;
 let wallDX = 5;
+let startScreen = true;
+let playingGame = false;
+let gameOverScreen = false;
  
 function preload() {
   mario = loadImage("assets/mario.png");
-  
 }
 
 
@@ -32,17 +34,45 @@ function setup() {
 // draw function
 function draw() {
   background(220);
-  displayMario();
-  moveMario();
-  displayWall();
-  moveWall();
-  hitBox();
+  //Checks and calls the startScreen function
+  if (startScreen) {
+    drawStartScreen();
+  }
+  
+  if (playingGame) {
+    displayMario();
+    moveMario();
+    displayWall();
+    moveWall();
+    hitBox();
+  }
+
+  if (gameOverScreen) {
+    drawGameOverScreen();
+  }
 }
+
 // moving with keys
 function keyPressed() {
-  if (key === " ") {
-    movingUp = true;
-    movingDown = false;
+  if (startScreen) {
+    if (key === " ") {
+      startScreen = false;
+      playingGame = true;
+    }
+  }
+  
+  if (playingGame) {
+    if (key === " ") {
+      movingUp = true;
+      movingDown = false;
+    }
+  }
+  
+  if (gameOverScreen) {
+    if (key === " ") {
+      gameOverScreen = false;
+      startScreen = true;
+    }
   }
 }
 
@@ -52,6 +82,7 @@ function keyReleased() {
     movingUp = false;
   }
 }
+
 
 function moveMario() {
   if (marioY <= height - height/7) {
@@ -95,13 +126,33 @@ function displayWall() {
 function hitBox(){
   if (marioY + 100 >= wallY) {
     if (marioX + 100 >= wallX) {
-      textSize(150);
-      fill("red");
-      text("YOU LOSE", width/8, height - height/2);
+      // background(220);
+      // textSize(150);
+      // fill("red");
+      // text("YOU LOSE", width/8, height - height/2);
       wallDX = 0;
+      marioDY = 0;
+      playingGame = false;
+      gameOverScreen = true;
     }
-    wallDX = 5;
   }
-  
+}
+function drawStartScreen() {
+  textSize(100);
+  fill("green");
+  text("Mario Jump Game", width/8, height/4);
+  fill("red");
+  textSize(50);
+  text("Press Space To Begin",  width/4, height/2);
+}
+
+function drawGameOverScreen() {
+  textSize(100);
+  fill("red");
+  text("You Lose", width/8, height/2);
+  fill("green");
+  textSize(50);
+  text("You Survived Walls!", width/8, height + height/2);
+  text("Press Space To Try Again", width/8, height/2);
 }
 
