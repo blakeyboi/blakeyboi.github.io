@@ -48,13 +48,15 @@ function draw() {
   }
 }
 
+
+
 function drawStartScreen() {
   textSize(100);
   fill("green");
   text("Mario Jump Game", width/8, height/4);
   fill("red");
   textSize(50);
-  text("Press Space To Begin",  width/4, height/2);
+  text("Start",  width/4, height/2);
 }
 
 function modePlayingGame() {
