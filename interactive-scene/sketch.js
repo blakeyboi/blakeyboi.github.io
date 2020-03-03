@@ -40,16 +40,39 @@ function draw() {
   }
   
   if (playingGame) {
-    displayMario();
-    moveMario();
-    displayWall();
-    moveWall();
-    hitBox();
+    modePlayingGame();
   }
 
   if (gameOverScreen) {
     drawGameOverScreen();
   }
+}
+
+function drawStartScreen() {
+  textSize(100);
+  fill("green");
+  text("Mario Jump Game", width/8, height/4);
+  fill("red");
+  textSize(50);
+  text("Press Space To Begin",  width/4, height/2);
+}
+
+function modePlayingGame() {
+  displayMario();
+  moveMario();
+  displayWall();
+  moveWall();
+  hitBox();
+}
+
+function drawGameOverScreen() {
+  textSize(100);
+  fill("red");
+  text("You Lose", width/8, height/2);
+  fill("green");
+  textSize(50);
+  text("You Survived Walls!", width/8, height + height/2);
+  text("Press Space To Try Again", width/8, height/2);
 }
 
 // moving with keys
@@ -106,12 +129,13 @@ function displayMario() {
 
 // making walls move
 function moveWall() {
-  if (wallX <= 0){
-    wallY = random(height/2, height);
-    wallX = width;
+  if (playingGame) {
+    if (wallX <= 0){
+      wallY = random(height/2, height);
+      wallX = width;
+    }
+    wallX -= wallDX;
   }
-  wallX -= wallDX;
-
 }
 
 // making walls appear
@@ -126,33 +150,14 @@ function displayWall() {
 function hitBox(){
   if (marioY + 100 >= wallY) {
     if (marioX + 100 >= wallX) {
-      // background(220);
-      // textSize(150);
-      // fill("red");
-      // text("YOU LOSE", width/8, height - height/2);
       wallDX = 0;
       marioDY = 0;
+      wallX = width;
       playingGame = false;
       gameOverScreen = true;
+      
     }
   }
 }
-function drawStartScreen() {
-  textSize(100);
-  fill("green");
-  text("Mario Jump Game", width/8, height/4);
-  fill("red");
-  textSize(50);
-  text("Press Space To Begin",  width/4, height/2);
-}
 
-function drawGameOverScreen() {
-  textSize(100);
-  fill("red");
-  text("You Lose", width/8, height/2);
-  fill("green");
-  textSize(50);
-  text("You Survived Walls!", width/8, height + height/2);
-  text("Press Space To Try Again", width/8, height/2);
-}
 
