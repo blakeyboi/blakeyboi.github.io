@@ -8,10 +8,12 @@
 let penSizeX = 5;
 let penSizeY = 5;
 let i = 0;
+let penColourR = 250;
+let penColourG = 250;
+let penColourB = 250;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  noStroke;
 }
 
 function draw() {
@@ -19,15 +21,43 @@ function draw() {
 }
 
 function pen() {
+  noStroke;
   if (mouseIsPressed) {
-    fill("black");
+    fill(penColourR, penColourG, penColourB);
     ellipse(mouseX, mouseY, penSizeX, penSizeY);
-  }
-  else {
-    fill("white");
   }
 }
 
-function mouseReleased() {
-  fill("white");
+function keyPressed() {
+  if (key === " ") {
+    background("white");
+    penColourR = 250;
+    penColourG = 250;
+    penColourB = 250;
+  }
+  if (key === "r") {
+    penColourR -= 10;
+  }
+  if (key === "g") {
+    penColourG -= 10;
+  }
+  if (key === "b") {
+    penColourB -= 10;
+  }
+  if (key === "c") {
+    penColourR = 250;
+    penColourG = 250;
+    penColourB = 250;
+  }
+}
+
+function mouseWheel(event) {
+  if (event.delta < 0) {
+    penSizeX += 5;
+    penSizeY += 5;
+  }
+  if (event.delta > 0) {
+    penSizeX -= 5;
+    penSizeY -= 5;
+  }
 }
