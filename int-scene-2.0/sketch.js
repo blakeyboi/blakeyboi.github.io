@@ -48,7 +48,7 @@ function keyPressed() {
     penColourR = 250;
     penColourG = 250;
     penColourB = 250;
-  }
+  } 
 }
 
 function mouseWheel(event) {
