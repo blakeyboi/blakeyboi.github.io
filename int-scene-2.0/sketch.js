@@ -21,11 +21,23 @@ function draw() {
 }
 
 function pen() {
-  noStroke;
+  let x = mouseX
+  let y = mmouseY
   if (mouseIsPressed) { // when you click on mouse you leave a trail of circles behind you.
+    noStroke();
     fill(penColourR, penColourG, penColourB);
-    ellipse(mouseX, mouseY, penSizeX, penSizeY);
+    ellipse(x, y, penSizeX, penSizeY);
+    //lineConnector();
   }
+}
+
+
+//trying to connect the dots
+function lineConnector() {
+  let x = mouseX;
+  let y = mouseY;
+  fill("black");
+  rect(x,y,penSizeX+500,penSizeY);
 }
 
 function keyPressed() {
@@ -71,6 +83,4 @@ function mouseWheel(event) {
       console.log(penSizeX, penSizeY);
     }
   }
-  
-  
 }
