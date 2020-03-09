@@ -21,23 +21,11 @@ function draw() {
 }
 
 function pen() {
-  let x = mouseX
-  let y = mmouseY
+  noStroke;
   if (mouseIsPressed) { // when you click on mouse you leave a trail of circles behind you.
-    noStroke();
     fill(penColourR, penColourG, penColourB);
-    ellipse(x, y, penSizeX, penSizeY);
-    //lineConnector();
+    ellipse(mouseX, mouseY, penSizeX, penSizeY);
   }
-}
-
-
-//trying to connect the dots
-function lineConnector() {
-  let x = mouseX;
-  let y = mouseY;
-  fill("black");
-  rect(x,y,penSizeX+500,penSizeY);
 }
 
 function keyPressed() {
