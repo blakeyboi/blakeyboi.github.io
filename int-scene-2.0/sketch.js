@@ -71,6 +71,4 @@ function mouseWheel(event) {
       console.log(penSizeX, penSizeY);
     }
   }
-  
-  
 }

@@ -48,5 +48,5 @@ function displayTerrain() {
 
 function displayPlayer() {
   fill("red");
-  rect(playerX + width/2, height - rectHeight - 100, 100, 100);
+  rect(playerX + width - 100, height - rectHeight - 100, 100, 100);
 }
