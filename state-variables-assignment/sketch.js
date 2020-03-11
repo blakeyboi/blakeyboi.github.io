@@ -19,7 +19,7 @@ function setup() {
 }
 
 function draw() {
-  background("white");
+  background("baby blue");
   movePlayer();
   displayTerrain();
   displayPlayer();
@@ -38,12 +38,23 @@ function movePlayer() {
 function displayTerrain() {
   time = playerX;
   for (let x = 0; x <= width; x += rectWidth) {
-    rectHeight = noise(time) * height;
-    fill("black");
+    rectHeight = noise(time) * height + 100;
+    stroke("brown");
     rect(x, height - rectHeight, rectWidth, rectHeight);
 
     time += 0.001;
   }
+  
+  time = playerX;
+  for (let x = 0; x <= width; x += rectWidth) {
+    rectHeight = noise(time) * height;
+    stroke("green");
+    rect(x, height - rectHeight, rectWidth, rectHeight);
+
+    time += 0.001;
+  }
+
+  
 }
 
 function displayPlayer() {
