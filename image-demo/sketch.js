@@ -6,33 +6,46 @@
 // - describe what you did to take this project "above and beyond"
 
 
-let star;
-let scalar = 1.0;
-
-function preload() {
-  star = loadImage("assets/gear.png");
-}
+let ballArray = [];
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
+  window.setInterval(addBall, 500);
 }
 
 function draw() {
-  background(220);
-  fill("lime")
-  // circle(mouseX - 10, mouseY - 10, 100)
-  image(star, mouseX - (width/2), mouseY - (height/2), scalar*star.width, scalar*star.height)
+  background("white");
+  moveBalls();
+  displayBalls();
+
 }
 
-function mouseWheel(event) {
-  print(event.delta);
-  if (event.delta < 0) {
-    scalar *= 1.1;
-  }
-  else {
-    scalar *= 0.9;
+function moveBalls() {
+  for(let i = 0; i < ballArray.length; i++) {
+    let dx = random(-10, 10);
+    let dy = random(-10, 10);
+    ballArray[i].x += dx;
+    ballArray[i].y  += dy;
   }
 }
+
+function displayBalls() {
+  for (let i = 0; i < ballArray.length; i++) {
+    fill(ballArray[i].color);
+    circle(ballArray[i].x, ballArray[i].y, ballArray[i].radius);
+  }
+}
+
+function addBall() {
+  let thisBall = {
+    x: random(width),
+    y: random(height),
+    radius: random(25, 50),
+    color: color(random(255), random(255), random(255), random(255)),
+  };
+  ballArray.push(thisBall);
+}
+
 
