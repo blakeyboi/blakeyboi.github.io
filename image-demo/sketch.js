@@ -12,14 +12,28 @@ let ballArray = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
-  window.setInterval(addBall, 500);
+  window.setInterval(addBall, 10);
 }
 
 function draw() {
   background("white");
   moveBalls();
   displayBalls();
+  checkIfHit();
 
+}
+
+function mouseClicked() {
+}
+
+function checkIfHit() {
+  for(let i = ballArray.length - 1; i >= 0; i--) {
+    let distanceToMouse = dist(mouseX, mouseY, ballArray[i].x, ballArray[i].y);
+    if (distanceToMouse < ballArray[i].radius) {
+      // ballArray[i].color = "red";
+      ballArray.splice(i, 1);
+    }
+  }
 }
 
 function moveBalls() {
@@ -42,8 +56,8 @@ function addBall() {
   let thisBall = {
     x: random(width),
     y: random(height),
-    radius: random(25, 50),
-    color: color(random(255), random(255), random(255), random(255)),
+    radius: random(75, 100),
+    color: color(random(1), random(1), random(1), random(255)),
   };
   ballArray.push(thisBall);
 }
