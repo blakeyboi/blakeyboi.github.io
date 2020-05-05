@@ -15,80 +15,67 @@ function make2DArray(cols,rows){
 }
 
 let grid;
-let cols = 10;
-let rows = 10;
+let cols = 7;
+let rows = 6;
 let resolution = 40;
+let colour = ["red", "blue"];
 
 function setup() {
-  createCanvas(400, 400);
-
-  cols = width/resolution;
-  rows = height/resolution; 
-
-  grid = make2DArray(10, 10);
+  createCanvas(cols*resolution, rows*resolution); 
+  grid = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
-      grid[i][j] = floor(random(2));
+      grid[i][j] = "";
     }
   }
 }
-
 function draw() {
-  background(0);
+  drawingTheBoard();
+  putChip();
+}
 
+function drawingTheBoard() {
+  noStroke();  
+  background("yellow");
+  grid = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let x = i * resolution;
       let y = j * resolution;
-
-      if (grid[i][j] === 1) {
-        fill(255);
-        stroke(0);
-        rect(x,y,resolution-1,resolution-1);
-      }
+      stroke(1);
+      fill(255);
+      ellipse(x+resolution/2,y+resolution/2,resolution,resolution);
     }
   }
-  let next = make2DArray(cols, rows);
-
-
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      let state = grid[i][j];
-
-      // Edges
-      if (i === 0 || i === cols - 1 || j === 0 || j === rows - 1) {
-        next[i][j] = grid[i][j];
-      }
-      else {
-
-      // Count live neighbors
-      let sum = 0;
-      let neighbors = countNeighbors(grid, i, j);
-
-      if (state === 0 && neighbors === 3) {
-        next[i][j] = 1;
-      }
-      else if (state === 1 && (neighbors <2 || neighbors > 3)) {
-        next[i][j] = 0;
-      }
-      else {
-        next[i][j] = state;
-      }
-    }
-
-    }
-  }
-  grid = next;
 }
 
-function countNeighbors(grid, x, y) {
-  let sum = 0;
-  for (let i = -1; i < 2; i++) {
-    for (let j = -1; j < 2; j++) {
-      sum += grid[x + i][y + j];
-
+function putChip() {
+  if (mouseIsPressed && mouseX < resolution) {
+    grid = make2DArray(cols, rows);
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        grid[0][0] = "blue";
+        if (grid[0][0] === "blue") {
+          let x = 0 * resolution;
+          let y = 0 * resolution;
+          fill("blue");
+          ellipse(x+resolution/2,y+resolution/2 + resolution*5,resolution,resolution);
+        }
+        console.log(grid[0][0]);
+      }
     }
   }
-  sum -= grid[x][y];
-  return sum;
+}
+
+function checkCol() {
+  grid = make2DArray(cols, rows);
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      let x = i * resolution;
+        if (mouseX ) {
+          
+        }
+      }
+    }
+  }
 }
