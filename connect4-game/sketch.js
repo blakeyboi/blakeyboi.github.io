@@ -6,10 +6,10 @@
 // - describe what you did to take this project "above and beyond"
 
 let screen = 1;
-let connect = 5;
+let connect = 4;
 let w;
 let h;
-let bs = connect*20;
+let bs = connect*35;
 let dis = bs/10;
 let mob;
 let morb;
@@ -19,10 +19,12 @@ let colorPicker;
 let colorPicker1;
 let colorPicker2;
 let sound;
+let blake;
 
 
 
 function preload() {
+  blake = loadImage('assets/blake.png');
   soundFormats('mp3', 'ogg');
   sound = loadSound('assets/slot.mp3');
   sound1 = loadSound('assets/slots.mp3');
@@ -33,7 +35,7 @@ function preload() {
 }
 
 function setup() {
-  console.log(bs)
+  // console.log(bs)
   // lets you play different lengths of connect
   if (connect === 4) {
     w = 7;
@@ -122,7 +124,13 @@ function endScreen() {
   fill(0);
   textSize(dis*2);
   text("click to restart", width/2, height*3/4);
+  imageMode(CENTER);
+  image(blake, width/4, height/3, 500, 500);
+  image(blake, width*3/4, height/3, 500, 500);
+  
 }
+
+
 
 
 
@@ -204,6 +212,7 @@ function dropCoin() {
 }
 
 function draw() {
+  console.log(mouseX, mouseY);
   if (screen === 1) {
     startScreen();
   }
