@@ -13,41 +13,45 @@ function setup() {
   window.setInterval(addBird, 2000);
 }
 
-function addBird() {
-  let y = random(0, height);
-  let bird = new Bird(0, y, "white", 10)
-  birds.push(bird);
-}
-
 function draw() {
-  background(220);
+  background("black");
   for (let firework of fireworks) {
-    firework.show();
     firework.move();
+    firework.show();
+    if(firework.t <= 0) {
+      fireworks.splice(firework, 1);
+    }
     for (let bird of birds) {
-      friework.checkCollision(bird);
+      firework.checkCollision(bird);
     }
   }
   for (let bird of birds) {
-    bird.update();
-    bird.display();
     bird.isAlive();
+    bird.display();
+    bird.update();
   }
 }
 
-function mouseClicked() {
+function mousePressed() {
   let r = random(0, 255);
   let g = random(0, 255);
   let b = random(0, 255);
   for(let i = 0; i < 100; i++) {
-    let dx = random(2, 5);
-    let dy = random(2, 5);
-    let firework = new Firework(mouseX, mouseY, 2, dx, dy, r, g, b);
+    let dx = random(-5, 5);
+    let dy = random(-5, 5);
+    let firework = new Firework(mouseX, mouseY, 5, dx, dy, r, g, b, 255);
     fireworks.push(firework);
   }
 }
+
+function addBird() {
+  let y = random(windowHeight);
+  let bird = new Bird(0, y)
+  birds.push(bird);
+}
+
 class Firework {
-  constructor(x, y, radius, dx, dy, r, g, b){
+  constructor(x, y, radius, dx, dy, r, g, b, t){
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -56,32 +60,32 @@ class Firework {
     this.r = r;
     this.g = g;
     this.b = b;
+    this.t = t;
   }
   move() {
     this.x += this.dx;
     this.y += this.dy;
-    this.dy += .98;
+    this.dy += 0.098;
   }
   show() {
-    fill(this.r, this.g, tihs.b);
+    noStroke();
+    fill(this.r, this.g, this.b, this.t);
     ellipse(this.x, this.y, this.radius);
+    this.t -= 5;
   }
   checkCollision(bird) {
     if (collideRectCircle(bird.x, bird.y, bird.sx, bird.sy, this.x, this.y, this.radius)) {
       bird.dx *= -1;
-      if (bird.dx = -10) {
-        bird.c = "green"
+      if (bird.dx = -3) {
+        bird.c = "blue";
 
-      }
-      else {
-        bird.c = "pink"
       }
     }
   }
 }
 
 class Bird {
-  constructor(x, y, sx, sy, dx, c){
+  constructor(x, y, sx = 60, sy = 20, dx = 3, c = "white"){
     this.x = x;
     this.y = y;
     this.sx = sx;
@@ -89,15 +93,16 @@ class Bird {
     this.dx = dx;
     this.c = c;
   }
-  update() {
+  isAlive() {
     this.x += this.dx;
   }
   display() {
+    noStroke();
     fill(this.c);
-    rect[this.x, this.y, this.sx, this.sy]
+    rect(this.x, this.y, this.sx, this.sy);
   }
-  isAlive() {
-    if (this.x > width + this.sx || this.x < -1 * this.sx) {
+  update() {
+    if (this.x > windowWidth + this.sx || this.x < -this.sx ) {
       birds.splice(this, 1)
     }
   }
